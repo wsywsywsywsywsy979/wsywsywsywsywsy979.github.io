@@ -3,21 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>LIB:英文（无构音障碍）长句子归一化</title>
+    <title>SC:英文（无构音障碍）短句子归一化</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
         integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
-    <script src="./../resources/jquery.min.js"></script>
-    <script src="./../resources/script.js"></script>
+    <script src="resources/jquery.min.js"></script>
+    <script src="resources/script.js"></script>
+    
     <center> 
         <h3 style="font-family: 新宋体;">
             请在安静环境下佩戴耳机用谷歌浏览器完成以下问题。
-            <!-- 问卷由程序随机生成，欢迎您在提交成功后通过刷新页面多次作答。 -->
-            <!-- 文本放置有输入测试，您可以选择发音[大于n个单词的英文句子]的音频测试模型转换效果。 -->
-            <!-- 此处的n还需要我自己去测试看。 不要删，给后续做实际演示一个参考-->
+            <!-- ，问卷由程序随机生成，欢迎您在提交成功后通过刷新页面多次作答。 -->
+            <!-- 文本放置有输入测试，您可以选择发音为：
+            [
+                "Yes", "No", "Up", "Down", "Left","Right", "On", "Off", "Stop", "Go", 
+                "Zero", "One", "Two", "Three", "Four","Five", "Six", "Seven", "Eight", "Nine"
+                "Bed", "Bird", "Cat", "Dog", "Happy", "House", "Marvin", "Sheila","Tree", and "Wow".]
+            的音频测试模型转换效果。 -->
+            
             评估分为两部分：语音自然度评估和语音相似度评估，评分标准如下表所示：
+            <!-- <table border="1" cellpadding="0" cellspacing="0" >
+                <tr>
+                    <td><h6 style="font-family: 新宋体;">分值</h6></td>
+                    <td><h6 style="font-family: 新宋体;">自然度评测标准</h6></td>
+                    <td><h6 style="font-family: 新宋体;">相似度标准</h6></td>
+                </tr>
+                <tr>
+                    <td><h6 style="font-family: 新宋体;"value="5">5</h6></td>
+                    <td><h6 style="font-family: 新宋体;">音质清晰；发音流畅准确；韵律自然；音色较好</h6></td>
+                    <td><h6 style="font-family: 新宋体;">非常相似</h6></td>
+                </tr>		
+                <tr>
+                    <td><h6 style="font-family: 新宋体;"value="4">4</h6></td>
+                    <td><h6 style="font-family: 新宋体;">偶尔几个音节/单词模糊；发音比较流畅，错误较少；无严重韵律错误；音色良好 </h6></td>
+                    <td><h6 style="font-family: 新宋体;">比较相似</h6></td>
+                </tr>		
+                <tr>
+                    <td><h6 style="font-family: 新宋体;"value="3">3</h6></td>
+                    <td><h6 style="font-family: 新宋体;">一些音节模糊；发音不太流畅，有无明显错误；有一些不太正常的韵律；音色一般 </h6></td>
+                    <td><h6 style="font-family: 新宋体;">一般相似</h6></td>
+                </tr>		
+                <tr>
+                    <td><h6 style="font-family: 新宋体;"value="2">2</h6></td>
+                    <td><h6 style="font-family: 新宋体;">有一些词不太清晰；发音不流畅，难以理解；基本没有韵律；音色差</h6></td>
+                    <td><h6 style="font-family: 新宋体;">有些相似</h6></td>
+                </tr>		
+                <tr>
+                    <td><h6 style="font-family: 新宋体;"value="1">1</h6></td>
+                    <td><h6 style="font-family: 新宋体;">音质很不清晰；发音很不流畅，无法理解；无韵律起伏；明显机器音</h6></td>
+                    <td><h6 style="font-family: 新宋体;">完全不相似</h6></td>
+                </tr>        
+            </table> -->
             <p style="text-align: center">
-                <img src="./../resources/static/mos.png" style="margin:0 auto; width: 75%;">
+                <img src="resources/static/mos.png" style="margin:0 auto; width: 75%;">
             </p>
         </h3>
     </center>
@@ -27,12 +65,14 @@
     <form id="theForm" action="https://script.google.com/macros/s/AKfycbxwc4EP7Rw0SSvCKjYe_InMY-P4BLkqjh5VDz7uJJ-anKohPzgAL5X1bpWiR7rRRsSl/dev" method="GET" onsubmit="return preventRepeatedSubmission();">
     <center>
         <div class="form-group">
-            <label for="name">姓名：</label>
-            <input class="form-control" type="text" inputmode="text" name="name" required>
+                <label for="name">姓名：</label>
+                <input class="form-control" type="text" inputmode="text" name="name" required>
+<!--                <small class="form-text text-muted">必填*</small>-->
         </div>
         <div class="form-group">
             <label for="mail">电子邮件：</label>
             <input class="form-control" type="text" inputmode="email" placeholder="account@example.com" name="mail">
+<!--                <small class="form-text text-muted">如果中獎，我們將以電子郵件通知您</small>-->
         </div>
 
         <table border="1" cellpadding="0" cellspacing="0" >
@@ -52,19 +92,19 @@
                 <td><h6>0</h6></td>
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/ori_wav/1673-143396-0005.wav" type="audio/wav" />
+                        <source src="resources/SC_result/ori_wav/left279.wav" type="audio/wav" />
                     </audio>
                 </td>
 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/1673-143396-0005.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/left.wav" type="audio/wav" />
                     </audio>
                 </td>
                 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/result/0.wav" type="audio/wav" />
+                        <source src="resources/SC_result/result/0.wav" type="audio/wav" />
                     </audio>
                 </td>
 
@@ -91,19 +131,19 @@
                 <td><h6value="1">1</h6value=></td>
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/ori_wav/5895-34622-0013.wav" type="audio/wav" />
+                        <source src="resources/SC_result/ori_wav/house206.wav" type="audio/wav" />
                     </audio>
                 </td>
 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/5895-34622-0013.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/house.wav" type="audio/wav" />
                     </audio>
                 </td>
                 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/result/1.wav" type="audio/wav" />
+                        <source src="resources/SC_result/result/1.wav" type="audio/wav" />
                     </audio>
                 </td>
 
@@ -130,19 +170,19 @@
                 <td><h6value="2">2</h6value=></td>
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/ori_wav/2277-149874-0021.wav" type="audio/wav" />
+                        <source src="resources/SC_result/ori_wav/down386.wav" type="audio/wav" />
                     </audio>
                 </td>
 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/2277-149874-0021.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/down.wav" type="audio/wav" />
                     </audio>
                 </td>
                 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/result/2.wav" type="audio/wav" />
+                        <source src="resources/SC_result/result/2.wav" type="audio/wav" />
                     </audio>
                 </td>
 
@@ -169,19 +209,19 @@
                 <td><h6value="3">3</h6value=></td>
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/ori_wav/2428-83705-0025.wav" type="audio/wav" />
+                        <source src="resources/SC_result/ori_wav/stop441.wav" type="audio/wav" />
                     </audio>
                 </td>
 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/2428-83705-0025.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/stop.wav" type="audio/wav" />
                     </audio>
                 </td>
                 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/result/3.wav" type="audio/wav" />
+                        <source src="resources/SC_result/result/3.wav" type="audio/wav" />
                     </audio>
                 </td>
 
@@ -208,19 +248,19 @@
                 <td><h6value="4">4</h6value=></td>
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/ori_wav/3853-163249-0032.wav" type="audio/wav" />
+                        <source src="resources/SC_result/ori_wav/seven1155.wav" type="audio/wav" />
                     </audio>
                 </td>
 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/3853-163249-0032.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/seven.wav" type="audio/wav" />
                     </audio>
                 </td>
                 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/3853-163249-0032.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/seven.wav" type="audio/wav" />
                     </audio>
                 </td>
 
@@ -249,19 +289,19 @@
                 </td>
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/ori_wav/2428-83705-0002.wav" type="audio/wav" />
+                        <source src="resources/SC_result/ori_wav/two3599.wav" type="audio/wav" />
                     </audio>
                 </td>
 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/2428-83705-0002.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/two.wav" type="audio/wav" />
                     </audio>
                 </td>
                 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/result/5.wav" type="audio/wav" />
+                        <source src="resources/SC_result/result/5.wav" type="audio/wav" />
                     </audio>
                 </td>
 
@@ -288,19 +328,19 @@
                 <td><h6>6</h6></td>
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/ori_wav/3000-15664-0037.wav" type="audio/wav" />
+                        <source src="resources/SC_result/ori_wav/marvin1770.wav" type="audio/wav" />
                     </audio>
                 </td>
 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/3000-15664-0037.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/marvin.wav" type="audio/wav" />
                     </audio>
                 </td>
                 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/result/6.wav" type="audio/wav" />
+                        <source src="resources/SC_result/result/6.wav" type="audio/wav" />
                     </audio>
                 </td>
 
@@ -327,19 +367,19 @@
                 <td><h6>7</h6></td>
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/ori_wav/6241-66616-0009.wav" type="audio/wav" />
+                        <source src="resources/SC_result/ori_wav/stop2026.wav" type="audio/wav" />
                     </audio>
                 </td>
 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/6241-66616-0009.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/stop.wav" type="audio/wav" />
                     </audio>
                 </td>
                 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/result/7.wav" type="audio/wav" />
+                        <source src="resources/SC_result/result/7.wav" type="audio/wav" />
                     </audio>
                 </td>
 
@@ -366,19 +406,19 @@
                 <td><h6>8</h6></td>
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/ori_wav/8842-304647-0006.wav" type="audio/wav" />
+                        <source src="resources/SC_result/ori_wav/on1829.wav" type="audio/wav" />
                     </audio>
                 </td>
 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/8842-304647-0006.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/on.wav" type="audio/wav" />
                     </audio>
                 </td>
                 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/result/8.wav" type="audio/wav" />
+                        <source src="resources/SC_result/result/8.wav" type="audio/wav" />
                     </audio>
                 </td>
 
@@ -405,19 +445,19 @@
                 <td><h6>9</h6></td>
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/ori_wav/1988-24833-0016.wav" type="audio/wav" />
+                        <source src="resources/SC_result/ori_wav/one78.wav" type="audio/wav" />
                     </audio>
                 </td>
 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/1988-24833-0016.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/one.wav" type="audio/wav" />
                     </audio>
                 </td>
                 
                 <td>
                     <audio controls="controls"  height="50" width="50">
-                        <source src="./../resources/LIB_result/tts/1988-24833-0016.wav" type="audio/wav" />
+                        <source src="resources/SC_result/tts/one.wav" type="audio/wav" />
                     </audio>
                 </td>
 
@@ -442,23 +482,223 @@
         </table>
     </center>
     <center>
+        <!-- <form method="post", action="/"> -->
+            <!-- 待补充功能，这个每个模型需要区分开，记录到不同的文本中，就每个提交都创建一个txt记录，最后总的统计即可 -->
+            <!-- 需要可以检测是否10个都已评分完毕 -->
+            <!-- <input style="height: 50px;width: 100px;" type="submit" value="提交评分" > -->
+        <!-- </form>  -->
+        <!-- <button onclick="my_submit()" >提交评分</button> -->
+        <!-- 注意要写括号 -->
         <input class="btn btn-info btn-lg" type="submit" value="SUBMIT" id="submitBtn">
-        <input type="text" name="formid" value="lib" hidden>
+        <input type="text" name="formid" value="sc" hidden>
         <input type="text" name="thank" value="Thank you again for participating in this experiment!" hidden>
     </center>
-</form>
-<center>
-    <form method="post", action="/">
-        <input style="height: 50px;width: 100px;" type="submit" value="返回主页" >
-    </form> <!-- 这里应该返回一个值记录该听众完成了sc的评估，记录为一个全局变量 -->
-</center>
-<script type="text/javascript">
-    function preventRepeatedSubmission() {
-        document.getElementById('submitBtn').disabled = true;
-        setTimeout("submitBtn.disabled=false;", 5000);
-        return true;
-    };
-</script>
+        
+    </form>
+    
+    <!-- <script>
+        function my_submit(){
+            // 要做的事情：检查是否所有都已评估，
+            //获取所有单选按钮（同一组），得到对象//console.log("111")//alert("选择了"+id0ns[i].value);
+            var id0n_f=0,id1n_f=0,id2n_f=0,id3n_f=0,id4n_f=0,
+                id5n_f=0,id6n_f=0,id7n_f=0,id8n_f=0,id9n_f=0;
+            var id0s_f=0,id1s_f=0,id2s_f=0,id3s_f=0,id4s_f=0,
+                id5s_f=0,id6s_f=0,id7s_f=0,id8s_f=0,id9s_f=0;
+
+            var idns = document.getElementsByName("id0n"); // 注意中间有个s
+            var idss = document.getElementsByName("id0s");    
+            for(var i=0;i<idns.length;i++){
+                if(idns[i].checked){
+                    id0n_f=idns[i].value
+                }
+            }
+            for(var i=0;i<idss.length;i++){
+                if(idss[i].checked){
+                    id0s_f=idss[i].value
+                }
+            }
+            var idns = document.getElementsByName("id1n"); 
+            var idss = document.getElementsByName("id1s");      
+            for(var i=0;i<idns.length;i++){
+                if(idns[i].checked){
+                    id1n_f=idns[i].value
+                }
+            }
+            for(var i=0;i<idss.length;i++){
+                if(idss[i].checked){
+                    id1s_f=idss[i].value
+                }
+            }
+            var idns = document.getElementsByName("id2n"); 
+            var idss = document.getElementsByName("id2s");      
+            for(var i=0;i<idns.length;i++){
+                if(idns[i].checked){
+                    id2n_f=idns[i].value
+                }
+            }
+            for(var i=0;i<idss.length;i++){
+                if(idss[i].checked){
+                    id2s_f=idss[i].value
+                }
+            }
+            var idns = document.getElementsByName("id3n"); 
+            var idss = document.getElementsByName("id3s");      
+            for(var i=0;i<idns.length;i++){
+                if(idns[i].checked){
+                    id3n_f=idns[i].value
+                }
+            }
+            for(var i=0;i<idss.length;i++){
+                if(idss[i].checked){
+                    id3s_f=idss[i].value
+                }
+            }
+            var idns = document.getElementsByName("id4n"); 
+            var idss = document.getElementsByName("id4s");      
+            for(var i=0;i<idns.length;i++){
+                if(idns[i].checked){
+                    id4n_f=idns[i].value
+                }
+            }
+            for(var i=0;i<idss.length;i++){
+                if(idss[i].checked){
+                    id4s_f=idss[i].value
+                }
+            }
+            var idns = document.getElementsByName("id5n"); 
+            var idss = document.getElementsByName("id5s");      
+            for(var i=0;i<idns.length;i++){
+                if(idns[i].checked){
+                    id5n_f=idns[i].value
+                }
+            }
+            for(var i=0;i<idss.length;i++){
+                if(idss[i].checked){
+                    id5s_f=idss[i].value
+                }
+            }
+            var idns = document.getElementsByName("id6n"); 
+            var idss = document.getElementsByName("id6s");      
+            for(var i=0;i<idns.length;i++){
+                if(idns[i].checked){
+                    id6n_f=idns[i].value
+                }
+            }
+            for(var i=0;i<idss.length;i++){
+                if(idss[i].checked){
+                    id6s_f=idss[i].value
+                }
+            }
+            var idns = document.getElementsByName("id7n"); 
+            var idss = document.getElementsByName("id7s");      
+            for(var i=0;i<idns.length;i++){
+                if(idns[i].checked){
+                    id7n_f=idns[i].value
+                }
+            }
+            for(var i=0;i<idss.length;i++){
+                if(idss[i].checked){
+                    id7s_f=idss[i].value
+                }
+            }
+            var idns = document.getElementsByName("id8n"); 
+            var idss = document.getElementsByName("id8s");      
+            for(var i=0;i<idns.length;i++){
+                if(idns[i].checked){
+                    id8n_f=idns[i].value
+                }
+            }
+            for(var i=0;i<idss.length;i++){
+                if(idss[i].checked){
+                    id8s_f=idss[i].value
+                }
+            }
+            var idns = document.getElementsByName("id9n"); 
+            var idss = document.getElementsByName("id9s");      
+            for(var i=0;i<idns.length;i++){
+                if(idns[i].checked){
+                    id9n_f=idns[i].value
+                }
+            }
+            for(var i=0;i<idss.length;i++){
+                if(idss[i].checked){
+                    id9s_f=idss[i].value
+                }
+            }
+            if(id0n_f==0||id1n_f==0||id2n_f==0||id3n_f==0||id4n_f==0||id5n_f==0||id6n_f==0||id7n_f==0||id8n_f==0||id9n_f==0){
+                alert("有自然度未评估，请完成后再提交");
+            }
+            if(id0s_f==0||id1s_f==0||id2s_f==0||id3s_f==0||id4s_f==0||id5s_f==0||id6s_f==0||id7s_f==0||id8s_f==0||id9s_f==0){
+                alert("有相似度未评估，请完成后再提交");
+            }
+            else{ // 将数据写入到文件中 
+                //var fso, f, s ;  //这种方式需要考虑浏览器的兼容性，所以还是选择返回到后端来写
+                //fso = new ActiveXObject("Scripting.FileSystemObject");    
+                //f = fso.OpenTextFile("1——n.txt",8,true); 
+                //f.WriteLine(id0n_f);
+                //f.WriteLine(id1n_f);      
+                //f.WriteLine(id2n_f); 
+                //f.WriteLine(id3n_f);
+                //f.WriteLine(id4n_f); 
+                //f.WriteLine(id5n_f);
+                //f.WriteLine(id6n_f);
+                //f.WriteLine(id7n_f);
+                //f.WriteLine(id8n_f);    
+                //f.WriteLine(id9n_f);
+                //f.Close(); 
+                //f = fso.OpenTextFile("1——s.txt",8,true); 
+                //f.WriteLine(id0s_f);
+                //f.WriteLine(id1s_f);      
+                //f.WriteLine(id2s_f); 
+                //f.WriteLine(id3s_f);
+                //f.WriteLine(id4s_f); 
+                //f.WriteLine(id5s_f);
+                //f.WriteLine(id6s_f);
+                //f.WriteLine(id7s_f);
+                //f.WriteLine(id8s_f);    
+                //f.WriteLine(id9s_f);
+                //f.Close();
+                $.ajax({
+                    url: "TestJsonServlet", //提价的路径
+                    type: "post",       //提交方式
+                    data: {
+                        //向后台提交的数据
+                    },
+                    dataType: "JSON",       //规定请求成功后返回的数据
+                    success: function (data) {
+                        //请求成功之后进入该方法，data为成功后返回的数据
+                    },
+                    error: function (errorMsg) {
+                        //请求失败之后进入该方法，errorMsg为失败后返回的错误信息
+                    }
+                });
+                alert('提交成功可以返回主页评估其他模型，感谢您'); 
+            }
+            
+        }   
+    </script> -->
+
+    
+    <!-- <center>
+        <form method="post", action="/">
+            待补充功能，这个可以所有模型共用一个函数，因为只是返回随机数而已
+            <input style="height: 50px;width: 100px;" type="submit" value="刷新再评" >
+        </form> 
+    </center> -->
+
+    <center>
+        <form method="post", action="/">
+            <input style="height: 50px;width: 100px;" type="submit" value="返回主页" >
+        </form> <!-- 这里应该返回一个值记录该听众完成了sc的评估，记录为一个全局变量 -->
+    </center>
+    <script type="text/javascript">
+        function preventRepeatedSubmission() {
+            document.getElementById('submitBtn').disabled = true;
+            setTimeout("submitBtn.disabled=false;", 5000);
+            return true;
+        };
+    </script>
 </body>
 
 </html>
+<!-- 没关系，至少知道前后端这种方式太土了，而且最终还是要用这个 -->
