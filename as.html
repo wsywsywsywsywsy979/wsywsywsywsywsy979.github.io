@@ -10,15 +10,22 @@
     <script src="resources/jquery.min.js"></script>
     <script src="resources/script.js"></script>
     <center> 
-    <h3 style="font-family: 新宋体;">
+    <h6 style="font-family: 新宋体;">
         请在安静环境下佩戴耳机用谷歌浏览器完成以下问题，问卷由程序随机生成，欢迎您在提交成功后通过刷新页面多次作答。
         <!-- 文本放置有输入测试，您可以选择发音[中文]的音频测试模型转换效果。 -->
         <!-- 这个模型还需要我自己再测试看看效果。 不要删，给后续做实际演示一个参考-->
-        评估分为两部分：语音自然度评估和语音相似度评估，评分标准如下表所示：
+        <br>
+        评估分为两部分：语音自然度评估和语音相似度评估。
+        <br>
+            语音自然度评估方式：请依次播放“转换结果”栏的音频，如果该音频与机器音越接近则得分越低，与人声越接近则得分越高。
+        <br>
+        语音相似度评估方式：请将每一行的“参考wav”与对应行的“转换结果”进行对比，如果“转换结果”与“参考wav”越像则得分越高，反之得分越低。
+        <br>
+        评分标准如下表所示：
         <p style="text-align: center">
-            <img src="resources/static/mos.png" style="margin:0 auto; width: 75%;">
+            <img src="resources/static/mos.png" style="margin:0 auto; width: 50%;">
         </p>
-    </h3>
+    </h6>
 </center>
 </head>
 
@@ -26,16 +33,16 @@
     <form id="theForm" action="https://script.google.com/macros/s/AKfycbxwc4EP7Rw0SSvCKjYe_InMY-P4BLkqjh5VDz7uJJ-anKohPzgAL5X1bpWiR7rRRsSl/dev" method="GET" onsubmit="return preventRepeatedSubmission();">
     
         <center>
-            <div class="form-group">
+            <div class="form-group" style="margin:0 auto; width: 30%;">
                 <label for="name">姓名：</label>
                 <input class="form-control" type="text" inputmode="text" name="name" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin:0 auto; width: 30%;">
                 <label for="mail">电子邮件：</label>
                 <input class="form-control" type="text" inputmode="email" placeholder="account@example.com" name="mail">
             </div>
-    
-            <table border="1" cellpadding="0" cellspacing="0" >
+            <br>
+            <table border="4" cellpadding="0" cellspacing="0" style="margin:0 auto; width: 90%;" >
                 <tr>
                     <td><h6>id</h6></td>
                     <td><h6>源wav</h6></td>
