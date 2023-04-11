@@ -2,114 +2,1016 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Speech Normalization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>语音归一化评估</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+        integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <script src="resources/jquery.min.js"></script>
+    <script src="resources/script.js"></script>
+    
+    <center> 
+        <h6 style="font-family: 新宋体;margin:0 auto; width: 60%;">
+            <br>
+            语音归一化：将任意语音中说话人的音色转换为特定的一个说话人的音色，并保持语音内容不变。
+            <br>
+            <br>
+            请在安静环境下佩戴耳机用谷歌浏览器完成评估。
+            <br>
+            <br>
+            总共20个音频，需要花费不超过15分钟的时间。
+            <br>
+            <br>
+            **感谢您的支持，您的评估对我的实验结果非常重要**！
+            <br>
+            <br>
+            评估分为两部分：语音自然度评估和语音相似度评估。
+            <br>
+            语音自然度评估方式：请依次播放“转换结果”栏的音频，如果该音频与机器音越接近则得分越低，与人声越接近则得分越高。
+            <br>
+            <br>
+            语音相似度评估方式：请将每一行的“参考wav”与对应行的“转换结果”进行对比，如果“转换结果”与“参考wav”越像则得分越高，反之得分越低。
+            <br>
+            <br>
+            评分标准如下表所示：
+            <p style="text-align: center">
+                <img src="resources/static/mos.png" style="margin:0 auto; width: 100%;">
+            </p>
+        </h6>
+    </center>
 </head>
 
 <body>
-    <center><h3 style="font-family: 新宋体;">
-        感谢您参加本次实验，您的评分将作为对语音归一化质量评估的重要依据！
+    <form id="theForm" action="https://script.google.com/macros/s/AKfycbw6sV-Vh0xrMuUPTsOT8Eb6WX5YQeMmZSUGo7ZNo9-KH7Tw6w7jRnE9pfT5Yh48UmpB/dev" method="GET" onsubmit="return preventRepeatedSubmission();">
+    <center>
+        <div class="form-group" style="margin:0 auto; width: 30%;">
+                <label for="name">姓名：</label>
+                <input class="form-control" type="text" inputmode="text" name="name" required>
+<!--                <small class="form-text text-muted">必填*</small>-->
+        </div>
+        <div class="form-group" style="margin:0 auto; width: 30%;">
+            <label for="mail">电子邮件：</label>
+            <input class="form-control" type="text" inputmode="email" placeholder="account@example.com" name="mail">
+<!--                <small class="form-text text-muted">如果中獎，我們將以電子郵件通知您</small>-->
+        </div>
         <br>
-        本问卷分为4个部分，分别对应于使用Transformer-Parrotron 2.0模型实现的英文短句子归一化（SC），英文长句子归一化（LIB），中文归一化（AS），以及构音障碍归一化（UAS），请分别进入对应页面评估。
-        <!-- <br> -->
-    </h3>
+        注：为保证数据收集的正确性，姓名与邮箱不可为空。
+        <br>
+        
     </center>
-
-    <br>
     <center>
-        <!-- <form method="post", action="/SC"> -->
-            <a href="sc.html" >
-            <!-- <input style="height: 50px;width: 100px;" type="submit" value="SC" > -->
-                <!-- <button style="height: 50px;width: 100px;" value="SC" > -->
-                    SC
-            </a>
-        <!-- </form> -->
+        <br>
+        <h4>SC:英文（无构音障碍）短句子归一化</h4>
+        <br>
+        <table border="4" cellpadding="0" cellspacing="0" style="margin:0 auto; width: 90%;">
+            <tr>
+                <td><h6>id</h6></td>
+                <td><h6>源wav</h6></td>
+                <td><h6>参考wav</h6></td>
+                <td><h6>转换结果</h6></td>
+                <td><h6>转换结果的自然度评分</h6></td>
+                <td><h6>转换结果与参考wav的相似度评分</h6></td>
+            </tr>
+
+            <!-- 0 -->
+            <tr> 
+                <!--autoplay="preload"  -->
+                <td><h6>0</h6></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/ori_wav/left279.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/tts/left.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/result/0.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                        <!-- idxn表示第x个音频的自然度打分 -->
+                        <input type="radio" name="id0n_sc" value="5">5
+                        <input type="radio" name="id0n_sc" value="4">4
+                        <input type="radio" name="id0n_sc" value="3">3
+                        <input type="radio" name="id0n_sc" value="2">2
+                        <input type="radio" name="id0n_sc" value="1">1
+                </td>
+                <td>
+                        <!-- idxs表示第x个音频的相似度打分打分 -->
+                        <input type="radio" name="id0s_sc" value="5">5
+                        <input type="radio" name="id0s_sc"value="4">4
+                        <input type="radio" name="id0s_sc"value="3">3
+                        <input type="radio" name="id0s_sc"value="2">2
+                        <input type="radio" name="id0s_sc"value="1">1
+                </td>
+            </tr>
+
+            <!-- 1 -->
+            <tr>
+                <td><h6value="1">1</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/ori_wav/house206.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/tts/house.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/result/1.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id1n_sc" value="5">5
+                    <input type="radio" name="id1n_sc"value="4">4
+                    <input type="radio" name="id1n_sc"value="3">3
+                    <input type="radio" name="id1n_sc"value="2">2
+                    <input type="radio" name="id1n_sc"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id1s_sc" value="5">5
+                    <input type="radio" name="id1s_sc"value="4">4
+                    <input type="radio" name="id1s_sc"value="3">3
+                    <input type="radio" name="id1s_sc"value="2">2
+                    <input type="radio" name="id1s_sc"value="1">1
+                </td>
+            </tr>
+
+            <!-- 2 -->
+            <tr>
+                <td><h6value="2">2</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/ori_wav/down386.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/tts/down.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/result/2.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id2n_sc" value="5">5
+                    <input type="radio" name="id2n_sc"value="4">4
+                    <input type="radio" name="id2n_sc"value="3">3
+                    <input type="radio" name="id2n_sc"value="2">2
+                    <input type="radio" name="id2n_sc"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id2s_sc"value="5">5
+                    <input type="radio" name="id2s_sc"value="4">4
+                    <input type="radio" name="id2s_sc"value="3">3
+                    <input type="radio" name="id2s_sc"value="2">2
+                    <input type="radio" name="id2s_sc"value="1">1
+                </td>
+            </tr>
+
+            <!-- 3 -->
+            <tr>
+                <td><h6value="3">3</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/ori_wav/stop441.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/tts/stop.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/result/3.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id3n_sc" value="5">5
+                    <input type="radio" name="id3n_sc"value="4">4
+                    <input type="radio" name="id3n_sc"value="3">3
+                    <input type="radio" name="id3n_sc"value="2">2
+                    <input type="radio" name="id3n_sc"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id3s_sc" value="5">5
+                    <input type="radio" name="id3s_sc"value="4">4
+                    <input type="radio" name="id3s_sc"value="3">3
+                    <input type="radio" name="id3s_sc"value="2">2
+                    <input type="radio" name="id3s_sc"value="1">1
+                </td>
+            </tr>
+
+            <!-- 4 -->
+            <tr>
+                <td><h6value="4">4</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/ori_wav/seven1155.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/tts/seven.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/SC_result/tts/seven.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id4n_sc" value="5">5
+                    <input type="radio" name="id4n_sc"value="4">4
+                    <input type="radio" name="id4n_sc"value="3">3
+                    <input type="radio" name="id4n_sc"value="2">2
+                    <input type="radio" name="id4n_sc"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id4s_sc" value="5">5
+                    <input type="radio" name="id4s_sc"value="4">4
+                    <input type="radio" name="id4s_sc"value="3">3
+                    <input type="radio" name="id4s_sc"value="2">2
+                    <input type="radio" name="id4s_sc"value="1">1
+                </td>
+            </tr> 
+        </table>
+
+        <br>
+        <h4>LIB:英文（无构音障碍）长句子归一化</h4>
+        <br>
+        <table border="4" cellpadding="0" cellspacing="0" style="margin:0 auto; width: 90%;">
+            <tr>
+                <td><h6>id</h6></td>
+                <td><h6>源wav</h6></td>
+                <td><h6>参考wav</h6></td>
+                <td><h6>转换结果</h6></td>
+                <td><h6>转换结果的自然度评分</h6></td>
+                <td><h6>转换结果与参考wav的相似度评分</h6></td>
+            </tr>
+            <!-- 先把5和10位置摆好，再放置其他的-->
+
+            <!-- 0 -->
+            <tr> 
+                <!--autoplay="preload"  -->
+                <td><h6>0</h6></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/ori_wav/1673-143396-0005.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/tts/1673-143396-0005.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/result/0.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                        <!-- idxn表示第x个音频的自然度打分 -->
+                        <input type="radio" name="id0n_lib" value="5">5
+                        <input type="radio" name="id0n_lib" value="4">4
+                        <input type="radio" name="id0n_lib" value="3">3
+                        <input type="radio" name="id0n_lib" value="2">2
+                        <input type="radio" name="id0n_lib" value="1">1
+                </td>
+                <td>
+                        <!-- idxs表示第x个音频的相似度打分打分 -->
+                        <input type="radio" name="id0s_lib" value="5">5
+                        <input type="radio" name="id0s_lib"value="4">4
+                        <input type="radio" name="id0s_lib"value="3">3
+                        <input type="radio" name="id0s_lib"value="2">2
+                        <input type="radio" name="id0s_lib"value="1">1
+                </td>
+            </tr>
+
+            <!-- 1 -->
+            <tr>
+                <td><h6value="1">1</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/ori_wav/5895-34622-0013.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/tts/5895-34622-0013.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/result/1.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id1n_lib" value="5">5
+                    <input type="radio" name="id1n_lib"value="4">4
+                    <input type="radio" name="id1n_lib"value="3">3
+                    <input type="radio" name="id1n_lib"value="2">2
+                    <input type="radio" name="id1n_lib"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id1s_lib" value="5">5
+                    <input type="radio" name="id1s_lib"value="4">4
+                    <input type="radio" name="id1s_lib"value="3">3
+                    <input type="radio" name="id1s_lib"value="2">2
+                    <input type="radio" name="id1s_lib"value="1">1
+                </td>
+            </tr>
+
+            <!-- 2 -->
+            <tr>
+                <td><h6value="2">2</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/ori_wav/2277-149874-0021.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/tts/2277-149874-0021.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/result/2.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id2n_lib" value="5">5
+                    <input type="radio" name="id2n_lib"value="4">4
+                    <input type="radio" name="id2n_lib"value="3">3
+                    <input type="radio" name="id2n_lib"value="2">2
+                    <input type="radio" name="id2n_lib"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id2s_lib"value="5">5
+                    <input type="radio" name="id2s_lib"value="4">4
+                    <input type="radio" name="id2s_lib"value="3">3
+                    <input type="radio" name="id2s_lib"value="2">2
+                    <input type="radio" name="id2s_lib"value="1">1
+                </td>
+            </tr>
+
+            <!-- 3 -->
+            <tr>
+                <td><h6value="3">3</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/ori_wav/2428-83705-0025.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/tts/2428-83705-0025.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/result/3.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id3n_lib" value="5">5
+                    <input type="radio" name="id3n_lib"value="4">4
+                    <input type="radio" name="id3n_lib"value="3">3
+                    <input type="radio" name="id3n_lib"value="2">2
+                    <input type="radio" name="id3n_lib"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id3s_lib" value="5">5
+                    <input type="radio" name="id3s_lib"value="4">4
+                    <input type="radio" name="id3s_lib"value="3">3
+                    <input type="radio" name="id3s_lib"value="2">2
+                    <input type="radio" name="id3s_lib"value="1">1
+                </td>
+            </tr>
+
+            <!-- 4 -->
+            <tr>
+                <td><h6value="4">4</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/ori_wav/3853-163249-0032.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/tts/3853-163249-0032.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/LIB_result/tts/3853-163249-0032.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id4n_lib" value="5">5
+                    <input type="radio" name="id4n_lib"value="4">4
+                    <input type="radio" name="id4n_lib"value="3">3
+                    <input type="radio" name="id4n_lib"value="2">2
+                    <input type="radio" name="id4n_lib"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id4s_lib" value="5">5
+                    <input type="radio" name="id4s_lib"value="4">4
+                    <input type="radio" name="id4s_lib"value="3">3
+                    <input type="radio" name="id4s_lib"value="2">2
+                    <input type="radio" name="id4s_lib"value="1">1
+                </td>
+            </tr>
+            
+        </table>
+
+        <br>
+        <h4>AS:中文（无构音障碍）归一化</h4>
+        <br>
+        <table border="4" cellpadding="0" cellspacing="0" style="margin:0 auto; width: 90%;" >
+            <tr>
+                <td><h6>id</h6></td>
+                <td><h6>源wav</h6></td>
+                <td><h6>参考wav</h6></td>
+                <td><h6>转换结果</h6></td>
+                <td><h6>转换结果的自然度评分</h6></td>
+                <td><h6>转换结果与参考wav的相似度评分</h6></td>
+            </tr>
+            <!-- 先把5和10位置摆好，再放置其他的-->
+
+            <!-- 0 -->
+            <tr> 
+                <!--autoplay="preload"  -->
+                <td><h6>0</h6></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/ori_wav/SSB13650380.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/tts/SSB13650380.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/result/0.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                        <!-- idxn表示第x个音频的自然度打分 -->
+                        <input type="radio" name="id0n_as" value="5">5
+                        <input type="radio" name="id0n_as" value="4">4
+                        <input type="radio" name="id0n_as" value="3">3
+                        <input type="radio" name="id0n_as" value="2">2
+                        <input type="radio" name="id0n_as" value="1">1
+                </td>
+                <td>
+                        <!-- idxs表示第x个音频的相似度打分打分 -->
+                        <input type="radio" name="id0s_as" value="5">5
+                        <input type="radio" name="id0s_as"value="4">4
+                        <input type="radio" name="id0s_as"value="3">3
+                        <input type="radio" name="id0s_as"value="2">2
+                        <input type="radio" name="id0s_as"value="1">1
+                </td>
+            </tr>
+
+            <!-- 1 -->
+            <tr>
+                <td><h6value="1">1</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/ori_wav/SSB15850078.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/tts/SSB15850078.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/result/1.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id1n_as" value="5">5
+                    <input type="radio" name="id1n_as"value="4">4
+                    <input type="radio" name="id1n_as"value="3">3
+                    <input type="radio" name="id1n_as"value="2">2
+                    <input type="radio" name="id1n_as"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id1s_as" value="5">5
+                    <input type="radio" name="id1s_as"value="4">4
+                    <input type="radio" name="id1s_as"value="3">3
+                    <input type="radio" name="id1s_as"value="2">2
+                    <input type="radio" name="id1s_as"value="1">1
+                </td>
+            </tr>
+
+            <!-- 2 -->
+            <tr>
+                <td><h6value="2">2</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/ori_wav/SSB13850428.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/tts/SSB13850428.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/result/2.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id2n_as" value="5">5
+                    <input type="radio" name="id2n_as"value="4">4
+                    <input type="radio" name="id2n_as"value="3">3
+                    <input type="radio" name="id2n_as"value="2">2
+                    <input type="radio" name="id2n_as"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id2s_as"value="5">5
+                    <input type="radio" name="id2s_as"value="4">4
+                    <input type="radio" name="id2s_as"value="3">3
+                    <input type="radio" name="id2s_as"value="2">2
+                    <input type="radio" name="id2s_as"value="1">1
+                </td>
+            </tr>
+
+            <!-- 3 -->
+            <tr>
+                <td><h6value="3">3</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/ori_wav/SSB18780408.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/tts/SSB18780408.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/result/3.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id3n_as" value="5">5
+                    <input type="radio" name="id3n_as"value="4">4
+                    <input type="radio" name="id3n_as"value="3">3
+                    <input type="radio" name="id3n_as"value="2">2
+                    <input type="radio" name="id3n_as"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id3s_as" value="5">5
+                    <input type="radio" name="id3s_as"value="4">4
+                    <input type="radio" name="id3s_as"value="3">3
+                    <input type="radio" name="id3s_as"value="2">2
+                    <input type="radio" name="id3s_as"value="1">1
+                </td>
+            </tr>
+
+            <!-- 4 -->
+            <tr>
+                <td><h6value="4">4</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/ori_wav/SSB13200260.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/tts/SSB13200260.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/AS_result/tts/SSB13200260.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id4n_as" value="5">5
+                    <input type="radio" name="id4n_as"value="4">4
+                    <input type="radio" name="id4n_as"value="3">3
+                    <input type="radio" name="id4n_as"value="2">2
+                    <input type="radio" name="id4n_as"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id4s_as" value="5">5
+                    <input type="radio" name="id4s_as"value="4">4
+                    <input type="radio" name="id4s_as"value="3">3
+                    <input type="radio" name="id4s_as"value="2">2
+                    <input type="radio" name="id4s_as"value="1">1
+                </td>
+            </tr>
+            
+        </table>
+
+        <br>
+        <h4>UAS:正常或构音障碍英文短句子归一化</h4>
+        <br>
+        <table border="4" cellpadding="0" cellspacing="0" style="margin:0 auto; width: 90%;" >
+            <tr>
+                <td><h6>id</h6></td>
+                <td><h6>源wav</h6></td>
+                <td><h6>参考wav</h6></td>
+                <td><h6>转换结果</h6></td>
+                <td><h6>转换结果的自然度评分</h6></td>
+                <td><h6>转换结果与参考wav的相似度评分</h6></td>
+            </tr>
+            <!-- 先把5和10位置摆好，再放置其他的-->
+
+            <!-- 0 -->
+            <tr> 
+                <!--autoplay="preload"  -->
+                <td><h6>0</h6></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/ori_wav/M16_B3_UW43_M3.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/tts/designate.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/result/0.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                        <!-- idxn表示第x个音频的自然度打分 -->
+                        <input type="radio" name="id0n_uas" value="5">5
+                        <input type="radio" name="id0n_uas" value="4">4
+                        <input type="radio" name="id0n_uas" value="3">3
+                        <input type="radio" name="id0n_uas" value="2">2
+                        <input type="radio" name="id0n_uas" value="1">1
+                </td>
+                <td>
+                        <!-- idxs表示第x个音频的相似度打分打分 -->
+                        <input type="radio" name="id0s_uas" value="5">5
+                        <input type="radio" name="id0s_uas"value="4">4
+                        <input type="radio" name="id0s_uas"value="3">3
+                        <input type="radio" name="id0s_uas"value="2">2
+                        <input type="radio" name="id0s_uas"value="1">1
+                </td>
+            </tr>
+
+            <!-- 1 -->
+            <tr>
+                <td><h6value="1">1</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/ori_wav/M11_B2_CW79_M3.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/tts/my.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/result/1.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id1n_uas" value="5">5
+                    <input type="radio" name="id1n_uas"value="4">4
+                    <input type="radio" name="id1n_uas"value="3">3
+                    <input type="radio" name="id1n_uas"value="2">2
+                    <input type="radio" name="id1n_uas"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id1s_uas" value="5">5
+                    <input type="radio" name="id1s_uas"value="4">4
+                    <input type="radio" name="id1s_uas"value="3">3
+                    <input type="radio" name="id1s_uas"value="2">2
+                    <input type="radio" name="id1s_uas"value="1">1
+                </td>
+            </tr>
+
+            <!-- 2 -->
+            <tr>
+                <td><h6value="2">2</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/ori_wav/F04_B2_UW83_M7.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/tts/plane.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/result/2.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id2n_uas" value="5">5
+                    <input type="radio" name="id2n_uas"value="4">4
+                    <input type="radio" name="id2n_uas"value="3">3
+                    <input type="radio" name="id2n_uas"value="2">2
+                    <input type="radio" name="id2n_uas"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id2s_uas"value="5">5
+                    <input type="radio" name="id2s_uas"value="4">4
+                    <input type="radio" name="id2s_uas"value="3">3
+                    <input type="radio" name="id2s_uas"value="2">2
+                    <input type="radio" name="id2s_uas"value="1">1
+                </td>
+            </tr>
+
+            <!-- 3 -->
+            <tr>
+                <td><h6value="3">3</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/ori_wav/M10_B3_UW80_M8.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/tts/praiseworthy.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/result/3.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id3n_uas" value="5">5
+                    <input type="radio" name="id3n_uas"value="4">4
+                    <input type="radio" name="id3n_uas"value="3">3
+                    <input type="radio" name="id3n_uas"value="2">2
+                    <input type="radio" name="id3n_uas"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id3s_uas" value="5">5
+                    <input type="radio" name="id3s_uas"value="4">4
+                    <input type="radio" name="id3s_uas"value="3">3
+                    <input type="radio" name="id3s_uas"value="2">2
+                    <input type="radio" name="id3s_uas"value="1">1
+                </td>
+            </tr>
+
+            <!-- 4 -->
+            <tr>
+                <td><h6value="4">4</h6value=></td>
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/ori_wav/F03_B2_CW55_M5.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/tts/many.wav" type="audio/wav" />
+                    </audio>
+                </td>
+                
+                <td>
+                    <audio controls="controls"  height="50" width="50">
+                        <source src="resources/UAS_result/tts/many.wav" type="audio/wav" />
+                    </audio>
+                </td>
+
+                <td>
+                    <!-- idxn表示第x个音频的自然度打分 -->
+                    <input type="radio" name="id4n_uas" value="5">5
+                    <input type="radio" name="id4n_uas"value="4">4
+                    <input type="radio" name="id4n_uas"value="3">3
+                    <input type="radio" name="id4n_uas"value="2">2
+                    <input type="radio" name="id4n_uas"value="1">1
+                </td>
+                <td>
+                    <!-- idxs表示第x个音频的相似度打分打分 -->
+                    <input type="radio" name="id4s_uas" value="5">5
+                    <input type="radio" name="id4s_uas"value="4">4
+                    <input type="radio" name="id4s_uas"value="3">3
+                    <input type="radio" name="id4s_uas"value="2">2
+                    <input type="radio" name="id4s_uas"value="1">1
+                </td>
+            </tr>
+
+            
+        </table>
+
+
     </center>
 
-    <br>
+
+
+
+
     <center>
-        <!-- <form method="post", action="/LIB">
-            <input style="height: 50px;width: 100px;" type="submit" value="LIB" >
-        </form> -->
-        <a href="lib.html">
-            LIB
-        </a>
+        <!-- <form method="post", action="/"> -->
+            <!-- 待补充功能，这个每个模型需要区分开，记录到不同的文本中，就每个提交都创建一个txt记录，最后总的统计即可 -->
+            <!-- 需要可以检测是否10个都已评分完毕 -->
+            <!-- <input style="height: 50px;width: 100px;" type="submit" value="提交评分" > -->
+        <!-- </form>  -->
+        <!-- <button onclick="my_submit()" >提交评分</button> -->
+        <!-- 注意要写括号 -->
+        <input class="btn btn-info btn-lg" type="submit" value="SUBMIT" id="submitBtn">
+        <br>
+        <label>展示音频由程序随机产生，刷新页面可更换音频多次评估并提交结果</label>
+        <input type="text" name="formid" value="sc+lib+as+uas" hidden>
+        <input type="text" name="thank" value="Thank you again for participating in this experiment!" hidden>
     </center>
+        
+    </form>
+    <script type="text/javascript">
+        function preventRepeatedSubmission() {
+            document.getElementById('submitBtn').disabled = true;
+            setTimeout("submitBtn.disabled=false;", 5000);
+            return true;
+        };
+    </script>
+    <script> //产生n个不重复的指定范围内的随机数
+        //函数1 求指定范围内的一个随机数
+        function selectFrom(min,max)
+        {
+            var sum = max-min+1;
+            return Math.floor(Math.random()*sum+min);
+        }
+        //函数2 求指定范围内n个不重复的随机数
+        function myNum(n,min,max)
+        {
+            var a = [];
+            for(i=0;i<n;i++)
+            {
+                a[i]=selectFrom(min,max);
+                for(z=0;z<i;z++)
+                {
+                    if(a[i]==a[z])
+                    {
+                        i--;
+                        break;
+                    }
+                }     
+            }
+            return a;
+        }
+        // -------------sc---------------------------------------------------------------
+        var result = myNum(5,0,10); //测试发现做到了每次尝试的都不一样
+        console.log("sc:"+result.toString());
+        for(i=0;i<result.length;i++)
+        {
+            document.getElementsByTagName("audio")[3*i+0].setAttribute("src","resources/SC_result/"+result[i].toString()+"/ori.wav")
+            console.log((3*i+0).toString())
+            document.getElementsByTagName("audio")[3*i+1].setAttribute("src","resources/SC_result/"+result[i].toString()+"/tts.wav")
+            console.log((3*i+1).toString())
+            document.getElementsByTagName("audio")[3*i+2].setAttribute("src","resources/SC_result/"+result[i].toString()+"/re.wav")
+            console.log((3*i+2).toString())
+        }
+        //------------------lib----------------------------------------
+        var result = myNum(5,0,11); //测试发现做到了每次尝试的都不一样
+        console.log("lib:"+result.toString());
+        index=15
+        for(i=0;i<result.length;i++)
+        {
+            document.getElementsByTagName("audio")[3*i+0+index].setAttribute("src","resources/LIB_result/"+result[i].toString()+"/ori.wav")
+            //console.log((3*i+0+index).toString())
+            document.getElementsByTagName("audio")[3*i+1+index].setAttribute("src","resources/LIB_result/"+result[i].toString()+"/tts.wav")
+            //console.log((3*i+1+index).toString())
+            document.getElementsByTagName("audio")[3*i+2+index].setAttribute("src","resources/LIB_result/"+result[i].toString()+"/re.wav")
+            //console.log((3*i+1+index).toString())
+        }
+        //-----------------as-----------------------------------------
+        var result = myNum(5,0,11); //测试发现做到了每次尝试的都不一样
+        console.log(result.toString());
+        index=30
+        for(i=0;i<result.length;i++)
+        {
+            document.getElementsByTagName("audio")[3*i+0+index].setAttribute("src","resources/AS_result/"+result[i].toString()+"/ori.wav")
+            document.getElementsByTagName("audio")[3*i+1+index].setAttribute("src","resources/AS_result/"+result[i].toString()+"/tts.wav")
+            document.getElementsByTagName("audio")[3*i+2+index].setAttribute("src","resources/AS_result/"+result[i].toString()+"/re.wav")
+            //console.log(i.toString())
+        }
+        //-------------uas---------------------------------------
+        var result = myNum(5,0,11); //测试发现做到了每次尝试的都不一样
+        console.log(result.toString());
+        index=45
+        for(i=0;i<result.length;i++)
+        {
+            document.getElementsByTagName("audio")[3*i+0+index].setAttribute("src","resources/UAS_result/"+result[i].toString()+"/ori.wav")
+            document.getElementsByTagName("audio")[3*i+1+index].setAttribute("src","resources/UAS_result/"+result[i].toString()+"/tts.wav")
+            document.getElementsByTagName("audio")[3*i+2+index].setAttribute("src","resources/UAS_result/"+result[i].toString()+"/re.wav")
+            //console.log(i.toString())
+        }
+        console.log("success")
 
-    <br>
-    <center>
-        <!-- <form method="post", action="/AS">
-            <input style="height: 50px;width: 100px;" type="submit" value="AS" >
-        </form> -->
-        <a href="as.html">
-            AS
-        </a>
-    </center>
-
-    <br>
-    <center>
-        <!-- <form method="post", action="/UAS">
-            <input style="height: 50px;width: 100px;" type="submit" value="UAS" >
-        </form> -->
-        <a href="uas.html">
-            UAS
-        </a>
-    </center>
-
- 
-    <!-- <script>
-	    function click1(){
-		    alert("123");
-            //应该是返回返回speech commands模型的页面
-	    }
-    </script> -->
-
-
-    <!-- 不同字体！ -->
-    <!-- <table border="1" cellpadding="0" cellspacing="0" >
-        <tr>
-            <td><h3 style="font-family: 黑体;">黑体：SimHei</h3></td>
-            <td><h3 style="font-family: 华文黑体;">华文黑体：STHeiti</h3></td>
-            <td><h3 style="font-family: 微软正黑体;">微软正黑体：Microsoft JhengHei</h3></td>
-            <td><h3 style="font-family: 微软雅黑体;">微软雅黑体：Microsoft YaHei</h3></td>
-            <td><h3 style="font-family: 华文细黑;">华文细黑：STXihei</h3></td>
-        </tr>
-        <tr>
-            <td><h3 style="font-family: 楷体;">楷体：KaiTi</h3></td>
-            <td><h3 style="font-family: 楷体_GB2312;">楷体_GB2312：KaiTi_GB2312</h3></td>
-            <td><h3 style="font-family: 华文楷体;">华文楷体：STKaiti</h3></td>
-            <td><h3 style="font-family: 华文行楷;">华文行楷：STXingkai</h3></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><h3 style="font-family: 宋体;">宋体：SimSun</h3></td>
-            <td><h3 style="font-family: 新宋体;">新宋体：NSimSun</h3></td>
-            <td><h3 style="font-family: 仿宋;">仿宋：FangSong</h3></td>
-            <td><h3 style="font-family: 仿宋_GB2312;">仿宋_GB2312：FangSong_GB2312</h3></td>
-            <td><h3 style="font-family: 华文宋体;">华文宋体：STSong</h3></td>
-        </tr>
-        <tr>
-            <td><h3 style="font-family: 华文中宋;">华文中宋：STZhongsong</h3></td>
-            <td><h3 style="font-family: 华文仿宋;">华文仿宋：STFangsong</h3></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><h3 style="font-family: 华文新魏;">华文新魏：STXinwei</h3></td>
-            <td><h3 style="font-family: 华文琥珀;">华文琥珀：STHupo</h3></td>
-            <td><h3 style="font-family: 隶书;">隶书：LiSu</h3></td>
-            <td><h3 style="font-family: 华文隶书;">华文隶书：STLiti</h3></td>
-            <td><h3 style="font-family: 华文彩云;">华文彩云：STCaiyun</h3></td>
-        </tr>
-        <tr>
-            <td><h3 style="font-family: 方正舒体;">方正舒体：FZShuTi</h3></td>
-            <td><h3 style="font-family: 方正姚体;">方正姚体：FZYaoti</h3></td>
-            <td><h3 style="font-family: 幼圆;">幼圆：YouYuan</h3></td>
-            <td><h3 style="family:\5B8B\4F53;">PingFangSC-Medium</h3></td>
-            <td></td>
-        </tr>
-    </table> -->
-    
+    </script>
 </body>
 
 </html>
