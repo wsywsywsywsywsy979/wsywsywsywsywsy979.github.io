@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>语音归一化评估</title>
+    <title>语音正则化评估</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
         integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
@@ -13,7 +13,7 @@
     <center> 
         <h6 style="font-family: 新宋体;margin:0 auto; width: 60%;">
             <br>
-            语音归一化：将任意语音中说话人的音色转换为特定的一个说话人的音色，并保持语音内容不变。
+            语音正则化：将不同说话人不同语速甚至带有口音的语音正则化为一个特定说话人的标准发音。
             <br>
             <br>
             请在安静环境下佩戴耳机用谷歌浏览器完成评估。
@@ -27,10 +27,10 @@
             <br>
             评估分为两部分：语音自然度评估和语音相似度评估。
             <br>
-            语音自然度评估方式：请依次播放“转换结果”栏的音频，如果该音频与机器音越接近则得分越低，与人声越接近则得分越高。
+            语音自然度评估方式：请依次播放“正则化语音”栏的音频，如果该音频与机器音越接近则得分越低，与人声越接近则得分越高。
             <br>
             <br>
-            语音相似度评估方式：请将每一行的“参考wav”与对应行的“转换结果”进行对比，如果“转换结果”与“参考wav”越像则得分越高，反之得分越低。
+            语音相似度评估方式：请将每一行的“目标语音”与对应行的“正则化语音”进行对比，如果“正则化语音”与“目标语音”越像则得分越高，反之得分越低。
             <br>
             <br>
             评分标准如下表所示：
@@ -61,16 +61,16 @@
     </center>
     <center>
         <br>
-        <h4>SC:英文（无构音障碍）短句子归一化</h4>
+        <h4>SC:英文（无构音障碍）短句子正则化</h4>
         <br>
         <table border="4" cellpadding="0" cellspacing="0" style="margin:0 auto; width: 90%;">
             <tr>
                 <td><h6>id</h6></td>
-                <td><h6>源wav</h6></td>
-                <td><h6>参考wav</h6></td>
-                <td><h6>转换结果</h6></td>
-                <td><h6>转换结果的自然度评分</h6></td>
-                <td><h6>转换结果与参考wav的相似度评分</h6></td>
+                <td><h6>源语音</h6></td>
+                <td><h6>目标语音</h6></td>
+                <td><h6>正则化语音</h6></td>
+                <td><h6>正则化语音的自然度评分</h6></td>
+                <td><h6>正则化语音与目标语音的相似度评分</h6></td>
             </tr>
 
             <!-- 0 -->
@@ -271,16 +271,16 @@
         </table>
 
         <br>
-        <h4>LIB:英文（无构音障碍）长句子归一化</h4>
+        <h4>LIB:英文（无构音障碍）长句子正则化</h4>
         <br>
         <table border="4" cellpadding="0" cellspacing="0" style="margin:0 auto; width: 90%;">
             <tr>
                 <td><h6>id</h6></td>
-                <td><h6>源wav</h6></td>
-                <td><h6>参考wav</h6></td>
-                <td><h6>转换结果</h6></td>
-                <td><h6>转换结果的自然度评分</h6></td>
-                <td><h6>转换结果与参考wav的相似度评分</h6></td>
+                <td><h6>源语音</h6></td>
+                <td><h6>目标语音</h6></td>
+                <td><h6>正则化语音</h6></td>
+                <td><h6>正则化语音的自然度评分</h6></td>
+                <td><h6>正则化语音与目标语音的相似度评分</h6></td>
             </tr>
             <!-- 先把5和10位置摆好，再放置其他的-->
 
@@ -483,16 +483,16 @@
         </table>
 
         <br>
-        <h4>AS:中文（无构音障碍）归一化</h4>
+        <h4>AS:中文（无构音障碍）正则化</h4>
         <br>
         <table border="4" cellpadding="0" cellspacing="0" style="margin:0 auto; width: 90%;" >
             <tr>
                 <td><h6>id</h6></td>
-                <td><h6>源wav</h6></td>
-                <td><h6>参考wav</h6></td>
-                <td><h6>转换结果</h6></td>
-                <td><h6>转换结果的自然度评分</h6></td>
-                <td><h6>转换结果与参考wav的相似度评分</h6></td>
+                <td><h6>源语音</h6></td>
+                <td><h6>目标语音</h6></td>
+                <td><h6>正则化语音</h6></td>
+                <td><h6>正则化语音的自然度评分</h6></td>
+                <td><h6>正则化语音与目标语音的相似度评分</h6></td>
             </tr>
             <!-- 先把5和10位置摆好，再放置其他的-->
 
@@ -695,16 +695,16 @@
         </table>
 
         <br>
-        <h4>UAS:正常或构音障碍英文短句子归一化</h4>
+        <h4>UAS:正常或构音障碍英文短句子正则化</h4>
         <br>
         <table border="4" cellpadding="0" cellspacing="0" style="margin:0 auto; width: 90%;" >
             <tr>
                 <td><h6>id</h6></td>
-                <td><h6>源wav</h6></td>
-                <td><h6>参考wav</h6></td>
-                <td><h6>转换结果</h6></td>
-                <td><h6>转换结果的自然度评分</h6></td>
-                <td><h6>转换结果与参考wav的相似度评分</h6></td>
+                <td><h6>源语音</h6></td>
+                <td><h6>目标语音</h6></td>
+                <td><h6>正则化语音</h6></td>
+                <td><h6>正则化语音的自然度评分</h6></td>
+                <td><h6>正则化语音与目标语音的相似度评分</h6></td>
             </tr>
             <!-- 先把5和10位置摆好，再放置其他的-->
 
